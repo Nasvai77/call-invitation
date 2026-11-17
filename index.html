@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Приглашение на созвон</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <section id="invite" class="page active">
+      <div class="emoji">📞</div>
+      <h1>Вас пригласили на созвон</h1>
+      <p>Выберите, что будете делать:</p>
+
+      <div class="buttons">
+        <button class="btn yes" onclick="showPage('yes')">Согласиться</button>
+        <button class="btn no" onclick="showPage('no')">Отказаться</button>
+      </div>
+    </section>
+
+    <section id="yes" class="page">
+      <div class="emoji">🎉</div>
+      <h1>Ура ура ура!</h1>
+      <p>Выберите удобное время:</p>
+
+      <form action="https://formsubmit.co/ufyef@mail.ru" method="POST">
+        <input type="hidden" name="_subject" value="Ответ на приглашение на созвон">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="time-options">
+          <label class="time-card">
+            <input type="radio" name="Время" value="08:00" required>
+            <span>🕗 В 8:00</span>
+          </label>
+
+          <label class="time-card">
+            <input type="radio" name="Время" value="09:00">
+            <span>🕘 В 9:00</span>
+          </label>
+
+          <label class="time-card custom">
+            <input type="radio" name="Время" value="Своё время">
+            <span>✏️ Своё время</span>
+            <input type="text" name="Свое_время" id="customTime"
+                   placeholder="Например: 10:30"
+                   onclick="document.querySelector('input[value=&quot;Своё время&quot;]').checked=true">
+          </label>
+        </div>
+
+        <input type="hidden" name="Ответ" value="Согласился">
+
+        <button class="btn send" type="submit">Отправить ответ 💌</button>
+      </form>
+
+      <button class="back" onclick="showPage('invite')">← Назад</button>
+    </section>
+
+    <section id="no" class="page">
+      <div class="emoji sad">😢</div>
+      <h1>Очень грустно...</h1>
+      <p>Но ничего, может быть, в следующий раз.</p>
+      <button class="btn back-btn" onclick="showPage('invite')">Вернуться</button>
+    </section>
+  </main>
+
+  <script>
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(page).classList.add('active');
+    }
+  </script>
+</body>
+</html>
